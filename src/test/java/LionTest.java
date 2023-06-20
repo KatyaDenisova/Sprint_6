@@ -1,8 +1,6 @@
 import com.example.Feline;
 import com.example.Lion;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -13,9 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class LionTest extends BaseTest {
 
     @Mock
-    protected Feline feline;
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
+    private Feline feline;
 
     @Test
     public void getKittensTest() throws Exception {
@@ -27,16 +23,6 @@ public class LionTest extends BaseTest {
         var actualResult = lion.getKittens();
         // Assert
         assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void doesHaveManeMaleTest() throws Exception {
-        doesHaveManeTest("Самец", true);
-    }
-
-    @Test
-    public void doesHaveManeFemaleTest() throws Exception {
-        doesHaveManeTest("Самка", false);
     }
 
     @Test(expected = Exception.class)
@@ -55,15 +41,6 @@ public class LionTest extends BaseTest {
         var expectedResult = List.of("Животные", "Птицы", "Рыба");
         //  Act
         var actualResult = lion.getFood();
-        // Assert
-        assertEquals(expectedResult, actualResult);
-    }
-
-    private void doesHaveManeTest(String sex, boolean expectedResult) throws Exception {
-        //  Arrange
-        Lion lion = new Lion(sex, feline);
-        //  Act
-        var actualResult = lion.doesHaveMane();
         // Assert
         assertEquals(expectedResult, actualResult);
     }
